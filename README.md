@@ -1,75 +1,74 @@
-# README
+# GaiaCraft
 
-## Documentation de notre projet
+## Project documentation
 
-Notre projet *GaiaCraft* propose de consulter un manuel scolaire visualisable en réalité augmentée (AR) sur smartphone, comportant trois chapitres : la **tectonique des plaques**, la formation et le comportement d'un **trou noir**, et la **Bataille du débarquement de Normandie de 1944**. Un **menu principal** permet d'accéder à ces trois chapitres, chacun étant modélisé par une scène sur **Unity**.
+*GaiaCraft* project offers a textbook that can be viewed in augmented reality (AR) on a smartphone, consisting of three chapters: **plate tectonics**, the **formation and behavior of a black hole** and the **1944 Normandy landings**. A **main menu** provides access to these three chapters, each of them being modeled as a scene in **Unity**.
 
-Voici le lien vers notre documentation [Notion](https://www.notion.so/Unity-c178e74906ce49e6aa3adf7b84facc3c), explicitant entre autres le contenu de nos scènes et les outils utilisés sur Unity.
-
+Here is the link to the [Notion](https://www.notion.so/Unity-c178e74906ce49e6aa3adf7b84facc3c) documentation which explains among other things the content of the scenes and the tools used in Unity.
 
 ## Unity
 
-Nous utilisons la version **2022.3.20.f1** de Unity.
+*GaiaCraft* project uses version **2022.3.20.f1** of Unity.
 
-## Vuforia (SDK pour le rendu AR)
+## Vuforia (AR rendering SDK)
 
-Nous utilisons la version **10.27.3** de Vuforia.
+*GaiaCraft* project uses version **10.27.3** of Vuforia.
 
-### Installation de Vuforia
+### Vuforia installation
 
-Si Vuforia n'est pas encore installé sur le PC de l'utilisateur souhaitant ouvrir notre projet sur Unity :
+If Vuforia is not yet installed on the PC of the user who wants to open the project in Unity:
 
-1. Télécharger le fichier `add-vuforia-package-10-27-3` depuis le site web de [Vuforia](https://developer.vuforia.com/downloads/sdk).
-2. Importer le package en faisant un drag&drop vers Unity.
-3. S'assurer que la **caméra AR** du projet est bien cochée dans l'Inspecteur Unity.
+1. Download the `add-vuforia-package-10-27-3` file from the [Vuforia](https://developer.vuforia.com/downloads/sdk) website.
+2. Import the package by dragging and dropping it into Unity.
+3. Make sure the project's **AR camera** is checked in the Unity Inspector.
 
-### Problèmes avec Vuforia lors de l'ouverture du projet
+### Potential issues with Vuforia
 
-En cas d'erreur avec Vuforia lors de l'ouverture du projet :
+If an error occurs with Vuforia when opening the project:
 
-1. Ouvrir le fichier `manifest.json` (situé dans le dossier `Packages` du projet).
-2. Supprimer la ligne suivante :
+1. Open the `manifest.json` file (located in the project's `Packages` folder).
+2. Delete the following line:
    ```json
    "com.ptc.vuforia.engine": "file:com.ptc.vuforia.engine-10.27.3.tgz"
    ```
-3. Réimporter le package `add-vuforia-package-10-27-3` dans Unity.
+3. Reimport the `add-vuforia-package-10-27-3` package into Unity.
 
-## Packages nécessaires au rendu des shaders associés à la scène du trou noir
+## Packages required to render the black hole scene shaders
 
-Via le **Package Manager** de Unity, installer les packages suivants :
+Using Unity's **Package Manager**, install the following packages:
 
 - **ShaderGraph**
 
-- **URP (Universal Rendering Pipeline)** :
+- **URP (Universal Rendering Pipeline)**
 
-  - Utilisé pour l'effet de distorsion de la lumière autour du trou noir (effet de Fresnel).
-  - Modifie le pipeline de rendu de Unity de la manière suivante :
-    1. Les objets opaques de la scène sont rendus et stockés dans une texture dédiée.
-    2. Les éléments de transparence sont ensuite rendus en utilisant les informations de cette texture intermédiaire.
-  - Référence : [Vulkan Graphics Pipeline](https://vulkan-tutorial.com/Drawing_a_triangle/Graphics_pipeline_basics/Introduction)
+  - Used to simulate the distortion of light around the black hole (Fresnel effect).
+  - Modifies Unity's rendering pipeline as follows:
+    1. Opaque objects in the scene are rendered and stored in a dedicated texture.
+    2. Transparent elements are then rendered using the information from this intermediate texture.
+  - Reference : [Vulkan Graphics Pipeline](https://vulkan-tutorial.com/Drawing_a_triangle/Graphics_pipeline_basics/Introduction)
 
-- **Probuilder** :
+- **Probuilder**
 
-  - Utilisé pour créer l'effet de distorsion de l'espace-temps sous forme d’un plan quadrillé en forme d'entonnoir.
-  - Permet de générer un plan subdivisé représentant le champ gravitationnel induit par le trou noir.
+  - Used to create the effect of space-time distortion in the form of a funnel-shaped grid map.
+  - Allows to generate a subdivided map representing the gravitational field induced by the black hole.
 
-## Rendu du projet en AR sur smartphone
+## AR rendering of the project on a smartphone
 
-### Configuration Unity
+### Unity configuration
 
-1. Dans Unity, aller dans **File** -> **Build Settings** :
-   - Cliquer sur **Add Open Scenes**.
-   - Aller dans **Player Settings** > **XR Plugin Management** (l'installer si ce n'est pas déjà fait) > cocher **AR Core**.
+In Unity, go to `File ➔ Build Settings`:
+- Click on `Add Open Scenes`.
+- Go to `Player Settings ➔ XR Plugin Management` (install if it isn't already) and check `AR Core`.
 
-### Installation sur un appareil Android
+### Installation on an Android device
 
-1. Connecter le smartphone Android au PC.
-2. Copier-coller le fichier `.apk` généré précédemment dans un sous-dossier que l'on crée dans le dossier **Carte SD** ou **Mémoire interne** de l'Android.
+1. Connect the Android smartphone to the PC.
+2. Copy and paste the previously generated `.apk` file into a subfolder in the `Internal Storage` (or `SD Card`) folder on the Android device.
 3. Installation :
-   - Ouvrir le gestionnaire de fichiers sur le smartphone.
-   - Se rendre dans **Carte SD** ou **Mémoire interne**, selon l'emplacement choisi.
-   - Cliquer sur le fichier `.apk`, puis suivre les instructions de la fenêtre qui s'ouvre alors pour installer l'application.
-4. Une fois installée, ouvrir l'application Unity sur le smartphone.
-5. La caméra principale du smartphone doit alors s'ouvrir.
-6. Diriger la caméra vers l’**image target** imprimée afin d'afficher la scène en AR.
+   - Open the file manager on the smartphone.
+   - Go to `Internal Storage` (or `SD Card`, depending on the chosen location).
+   - Tap the `.apk` file and follow the on-screen instructions to install the application.
+4. Once installed, open the Unity application on the smartphone.
+5. The smartphone's main camera should then activate.
+6. Point the camera at the printed **image target** to display the AR scene.
 
